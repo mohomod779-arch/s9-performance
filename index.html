@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نبض السوق — أداء استراتيجية S9</title>
+<style>
+  :root{
+    --bg:#0b0f17; --card:#131a26; --line:#1f2a3c; --txt:#e6edf5; --mut:#8b9bb0;
+    --green:#2ecc71; --red:#e74c3c; --gold:#f0b429; --blue:#4aa3ff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',Tahoma,sans-serif;padding:24px 16px;max-width:1080px;margin:0 auto}
+  header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+  h1{font-size:1.45rem}
+  h1 span{color:var(--gold)}
+  .badge{background:#12291c;color:var(--green);border:1px solid #1d4a30;padding:5px 14px;border-radius:20px;font-size:.85rem}
+  .badge::before{content:"● ";animation:pulse 2s infinite}
+  @keyframes pulse{50%{opacity:.4}}
+  .upd{color:var(--mut);font-size:.8rem;width:100%}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .card .lbl{color:var(--mut);font-size:.78rem;margin-bottom:6px}
+  .card .val{font-size:1.35rem;font-weight:700;direction:ltr;text-align:right}
+  .pos{color:var(--green)} .neg{color:var(--red)}
+  section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:22px}
+  h2{font-size:1.05rem;margin-bottom:14px;color:var(--blue)}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  th{color:var(--mut);font-weight:600;text-align:right;padding:8px 10px;border-bottom:1px solid var(--line)}
+  td{padding:8px 10px;border-bottom:1px solid #182231;direction:ltr;text-align:right}
+  tr:hover td{background:#182231}
+  .note{color:var(--mut);font-size:.78rem;line-height:1.8;border-top:1px solid var(--line);padding-top:14px;margin-top:8px}
+  .err{color:var(--red);padding:30px;text-align:center}
+  svg text{fill:var(--mut);font-size:10px}
+</style>
+</head>
+<body>
+<header>
+  <h1>📈 نبض السوق — أداء <span>S9</span></h1>
+  <div class="badge">بيانات حية</div>
+  <div class="upd" id="upd"></div>
+</header>
+<div class="grid" id="stats"></div>
+<section>
+  <h2>منحنى الأداء التراكمي (ربح/خسارة كل صفقة موثقة من البروكر)</h2>
+  <div id="chart"></div>
+</section>
+<section>
+  <h2>الأداء الشهري</h2>
+  <table id="monthly"></table>
+</section>
+<section>
+  <h2>سجل الصفقات (الأحدث أولاً)</h2>
+  <table id="trades"></table>
+</section>
+<div class="note">
+  🔒 جميع الأرقام مستخرجة مباشرة من صفقات البروكر الموثقة (حساب 927302 — BlackBull MT5) وتُحدَّث تلقائياً كل 30 دقيقة.
+  تُعرض صفقات استراتيجية S9 فقط. الربح/الخسارة يشمل السواب والعمولات. الأداء السابق لا يضمن النتائج المستقبلية — التداول ينطوي على مخاطر.
+</div>
+<script>
+const fmt = v => (v>=0?'+':'') + v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const cls = v => v>=0 ? 'pos' : 'neg';
+async function load(){
+  try{
+    const d = await (await fetch('data.json?t='+Date.now())).json();
+    const s = d.stats;
+    document.getElementById('upd').textContent = 'آخر تحديث: ' + d.generated_at + ' (UTC) — حساب ' + d.account;
+    const cards = [
+      ['صافي الربح/الخسارة', fmt(s.net_pl)+' $', cls(s.net_pl)],
+      ['عدد الصفقات المغلقة', s.trades, ''],
+      ['نسبة الفوز', s.win_rate+'%', s.win_rate>=50?'pos':'neg'],
+      ['عامل الربح (PF)', s.profit_factor??'—', (s.profit_factor??0)>=1.5?'pos':''],
+      ['متوسط الربح', fmt(s.avg_win)+' $', 'pos'],
+      ['متوسط الخسارة', fmt(s.avg_loss)+' $', 'neg'],
+      ['أفضل صفقة', fmt(s.best)+' $', 'pos'],
+      ['أسوأ صفقة', fmt(s.worst)+' $', 'neg'],
+      ['أقصى تراجع', '-'+s.max_dd+' $', 'neg'],
+      ['صفقات مفتوحة', s.open_count ? s.open_count+' ('+fmt(s.open_pl)+' $)' : 'لا يوجد', s.open_pl>=0?'pos':'neg'],
+    ];
+    document.getElementById('stats').innerHTML = cards.map(c=>
+      `<div class="card"><div class="lbl">${c[0]}</div><div class="val ${c[2]}">${c[1]}</div></div>`).join('');
+    // equity curve (inline SVG)
+    const c = d.curve, W=1000, H=260, P=42;
+    if(c.length>1){
+      const vals = c.map(p=>p.cum), mn=Math.min(0,...vals), mx=Math.max(...vals);
+      const X = i => P + (W-2*P) * (i/(c.length-1));
+      const Y = v => H-P - (H-2*P) * ((v-mn)/((mx-mn)||1));
+      const path = c.map((p,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(p.cum).toFixed(1)).join(' ');
+      const area = path + ` L ${X(c.length-1).toFixed(1)} ${Y(Math.max(0,mn)).toFixed(1)} L ${X(0).toFixed(1)} ${Y(Math.max(0,mn)).toFixed(1)} Z`;
+      const zero = Y(0);
+      document.getElementById('chart').innerHTML =
+        `<svg viewBox="0 0 ${W} ${H}" style="width:100%;direction:ltr">
+          <line x1="${P}" y1="${zero}" x2="${W-P}" y2="${zero}" stroke="#2a3a52" stroke-dasharray="4 4"/>
+          <path d="${area}" fill="rgba(46,204,113,.08)"/>
+          <path d="${path}" fill="none" stroke="${vals[vals.length-1]>=0?'#2ecc71':'#e74c3c'}" stroke-width="2.5"/>
+          <text x="${P}" y="${H-12}">${c[0].date}</text>
+          <text x="${W-P}" y="${H-12}" text-anchor="end">${c[c.length-1].date}</text>
+          <text x="${P}" y="${Y(mx)-6}">${mx.toFixed(0)}</text>
+          <text x="${P}" y="${Y(mn)+14}">${mn.toFixed(0)}</text>
+        </svg>`;
+    } else { document.getElementById('chart').innerHTML = '<div class="err">لا توجد بيانات كافية للمنحنى بعد</div>'; }
+    document.getElementById('monthly').innerHTML =
+      '<tr><th>الشهر</th><th>صافي الربح/الخسارة</th><th>عدد الصفقات</th></tr>' +
+      d.monthly.map(m=>`<tr><td>${m.month}</td><td class="${cls(m.pl)}">${fmt(m.pl)} $</td><td>${m.trades}</td></tr>`).join('');
+    document.getElementById('trades').innerHTML =
+      '<tr><th>التذكرة</th><th>الرمز</th><th>الاتجاه</th><th>الفتح</th><th>الإغلاق</th><th>الربح/الخسارة</th></tr>' +
+      d.trades.map(t=>`<tr><td>${t.ticket}</td><td>${t.symbol}</td><td>${t.dir==='LONG'?'🟢 شراء':'🔴 بيع'}</td><td>${t.opened}</td><td>${t.closed??'—'}</td><td class="${cls(t.pl)}">${fmt(t.pl)} $</td></tr>`).join('');
+  }catch(e){
+    document.getElementById('stats').innerHTML = '<div class="err">تعذر تحميل البيانات — أعد المحاولة لاحقاً</div>';
+  }
+}
+load();
+</script>
+</body>
+</html>
