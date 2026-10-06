@@ -1,33 +1,33 @@
 {
- "generated_at": "2026-10-06T18:35:24Z",
+ "generated_at": "2026-10-06T18:37:59Z",
  "account": "927302",
  "strategy": "S9 - SNR Fresh Zones M15",
  "source": "broker-verified positions (magic 777001), BlackBull MT5",
  "stats": {
-  "net_pl": 439.93,
-  "trades": 7,
-  "wins": 3,
-  "losses": 4,
-  "win_rate": 42.9,
-  "profit_factor": 1.44,
-  "avg_win": 476.47,
-  "avg_loss": -247.37,
+  "net_pl": 1873.23,
+  "trades": 15,
+  "wins": 7,
+  "losses": 8,
+  "win_rate": 46.7,
+  "profit_factor": 2.07,
+  "avg_win": 518.07,
+  "avg_loss": -219.16,
   "best": 876.2,
-  "worst": -250.0,
-  "max_dd": 497.94,
+  "worst": -250.64,
+  "max_dd": 747.79,
   "open_pl": 0,
   "open_count": 0
  },
  "monthly": [
   {
    "month": "2026-09",
-   "pl": 666.41,
-   "trades": 5
+   "pl": 1523.01,
+   "trades": 10
   },
   {
    "month": "2026-10",
-   "pl": -226.48,
-   "trades": 2
+   "pl": 350.22,
+   "trades": 5
   }
  ],
  "curve": [
@@ -57,24 +57,90 @@
   },
   {
    "i": 5,
-   "date": "2026-09-30",
-   "pl": 876.2,
-   "cum": 666.41
+   "date": "2026-09-24",
+   "pl": -249.85,
+   "cum": -459.64
   },
   {
    "i": 6,
-   "date": "2026-10-01",
-   "pl": -248.08,
-   "cum": 418.33
+   "date": "2026-09-25",
+   "pl": 425.04,
+   "cum": -34.6
   },
   {
    "i": 7,
+   "date": "2026-09-29",
+   "pl": 297.57,
+   "cum": 262.97
+  },
+  {
+   "i": 8,
+   "date": "2026-09-29",
+   "pl": 634.48,
+   "cum": 897.45
+  },
+  {
+   "i": 9,
+   "date": "2026-09-30",
+   "pl": 876.2,
+   "cum": 1773.65
+  },
+  {
+   "i": 10,
+   "date": "2026-09-30",
+   "pl": -250.64,
+   "cum": 1523.01
+  },
+  {
+   "i": 11,
+   "date": "2026-10-01",
+   "pl": 840.0,
+   "cum": 2363.01
+  },
+  {
+   "i": 12,
+   "date": "2026-10-01",
+   "pl": -248.08,
+   "cum": 2114.93
+  },
+  {
+   "i": 13,
    "date": "2026-10-02",
    "pl": 21.6,
-   "cum": 439.93
+   "cum": 2136.53
+  },
+  {
+   "i": 14,
+   "date": "2026-10-02",
+   "pl": -246.48,
+   "cum": 1890.05
+  },
+  {
+   "i": 15,
+   "date": "2026-10-06",
+   "pl": -16.82,
+   "cum": 1873.23
   }
  ],
  "trades": [
+  {
+   "ticket": 219098999,
+   "symbol": "XAUUSDp",
+   "dir": "SHORT",
+   "opened": "2026-10-06 11:35",
+   "closed": "2026-10-06 11:35",
+   "pl": -16.82,
+   "ledger_pl": 500.0
+  },
+  {
+   "ticket": 217959073,
+   "symbol": "XAUUSDp",
+   "dir": "LONG",
+   "opened": "2026-10-02 18:35",
+   "closed": "2026-10-02 18:52",
+   "pl": -246.48,
+   "ledger_pl": -250.0
+  },
   {
    "ticket": 217834214,
    "symbol": "NAS100",
@@ -94,6 +160,24 @@
    "ledger_pl": -250.0
   },
   {
+   "ticket": 216748142,
+   "symbol": "XAUUSDp",
+   "dir": "LONG",
+   "opened": "2026-10-01 06:20",
+   "closed": "2026-10-01 07:43",
+   "pl": 840.0,
+   "ledger_pl": 500.0
+  },
+  {
+   "ticket": 216451982,
+   "symbol": "XAUUSDp",
+   "dir": "LONG",
+   "opened": "2026-09-30 17:50",
+   "closed": "2026-09-30 18:01",
+   "pl": -250.64,
+   "ledger_pl": -250.0
+  },
+  {
    "ticket": 215354173,
    "symbol": "NAS100",
    "dir": "LONG",
@@ -101,6 +185,42 @@
    "closed": "2026-09-30 16:32",
    "pl": 876.2,
    "ledger_pl": 500.0
+  },
+  {
+   "ticket": 215581178,
+   "symbol": "USDJPYp",
+   "dir": "SHORT",
+   "opened": "2026-09-29 14:05",
+   "closed": "2026-09-29 15:49",
+   "pl": 634.48,
+   "ledger_pl": 500.0
+  },
+  {
+   "ticket": 215290617,
+   "symbol": "XAUUSDp",
+   "dir": "LONG",
+   "opened": "2026-09-29 00:20",
+   "closed": "2026-09-29 05:48",
+   "pl": 297.57,
+   "ledger_pl": 500.0
+  },
+  {
+   "ticket": 213890810,
+   "symbol": "NAS100",
+   "dir": "SHORT",
+   "opened": "2026-09-25 13:20",
+   "closed": "2026-09-25 18:14",
+   "pl": 425.04,
+   "ledger_pl": 500.0
+  },
+  {
+   "ticket": 213075169,
+   "symbol": "EURUSDp",
+   "dir": "LONG",
+   "opened": "2026-09-24 13:05",
+   "closed": "2026-09-24 14:15",
+   "pl": -249.85,
+   "ledger_pl": -250.0
   },
   {
    "ticket": 213061631,
@@ -140,5 +260,5 @@
   }
  ],
  "open_trades": [],
- "excluded_unclassified": 41
+ "excluded_unclassified": 33
 }
