@@ -1,17 +1,17 @@
 {
- "generated_at": "2026-10-06T18:31:15Z",
+ "generated_at": "2026-10-06T18:35:24Z",
  "account": "927302",
  "strategy": "S9 - SNR Fresh Zones M15",
  "source": "broker-verified positions (magic 777001), BlackBull MT5",
  "stats": {
-  "net_pl": 683.38,
-  "trades": 6,
+  "net_pl": 439.93,
+  "trades": 7,
   "wins": 3,
-  "losses": 3,
-  "win_rate": 50.0,
-  "profit_factor": 1.92,
+  "losses": 4,
+  "win_rate": 42.9,
+  "profit_factor": 1.44,
   "avg_win": 476.47,
-  "avg_loss": -248.67,
+  "avg_loss": -247.37,
   "best": 876.2,
   "worst": -250.0,
   "max_dd": 497.94,
@@ -21,8 +21,8 @@
  "monthly": [
   {
    "month": "2026-09",
-   "pl": 909.86,
-   "trades": 4
+   "pl": 666.41,
+   "trades": 5
   },
   {
    "month": "2026-10",
@@ -33,39 +33,45 @@
  "curve": [
   {
    "i": 1,
-   "date": "2026-09-24",
-   "pl": 531.6,
-   "cum": 531.6
+   "date": "2026-09-17",
+   "pl": -243.45,
+   "cum": -243.45
   },
   {
    "i": 2,
    "date": "2026-09-24",
-   "pl": -247.94,
-   "cum": 283.66
+   "pl": 531.6,
+   "cum": 288.15
   },
   {
    "i": 3,
    "date": "2026-09-24",
-   "pl": -250.0,
-   "cum": 33.66
+   "pl": -247.94,
+   "cum": 40.21
   },
   {
    "i": 4,
-   "date": "2026-09-30",
-   "pl": 876.2,
-   "cum": 909.86
+   "date": "2026-09-24",
+   "pl": -250.0,
+   "cum": -209.79
   },
   {
    "i": 5,
-   "date": "2026-10-01",
-   "pl": -248.08,
-   "cum": 661.78
+   "date": "2026-09-30",
+   "pl": 876.2,
+   "cum": 666.41
   },
   {
    "i": 6,
+   "date": "2026-10-01",
+   "pl": -248.08,
+   "cum": 418.33
+  },
+  {
+   "i": 7,
    "date": "2026-10-02",
    "pl": 21.6,
-   "cum": 683.38
+   "cum": 439.93
   }
  ],
  "trades": [
@@ -122,8 +128,17 @@
    "closed": "2026-09-24 10:17",
    "pl": 531.6,
    "ledger_pl": 500.0
+  },
+  {
+   "ticket": 208016905,
+   "symbol": "XAUUSDp",
+   "dir": "SHORT",
+   "opened": "2026-09-17 17:40",
+   "closed": "2026-09-17 18:08",
+   "pl": -243.45,
+   "ledger_pl": -250.0
   }
  ],
  "open_trades": [],
- "excluded_unclassified": 42
+ "excluded_unclassified": 41
 }
