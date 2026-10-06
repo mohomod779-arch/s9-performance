@@ -1,1 +1,129 @@
-{"note":"placeholder - will be replaced by the VPS updater"}
+{
+ "generated_at": "2026-10-06T18:31:15Z",
+ "account": "927302",
+ "strategy": "S9 - SNR Fresh Zones M15",
+ "source": "broker-verified positions (magic 777001), BlackBull MT5",
+ "stats": {
+  "net_pl": 683.38,
+  "trades": 6,
+  "wins": 3,
+  "losses": 3,
+  "win_rate": 50.0,
+  "profit_factor": 1.92,
+  "avg_win": 476.47,
+  "avg_loss": -248.67,
+  "best": 876.2,
+  "worst": -250.0,
+  "max_dd": 497.94,
+  "open_pl": 0,
+  "open_count": 0
+ },
+ "monthly": [
+  {
+   "month": "2026-09",
+   "pl": 909.86,
+   "trades": 4
+  },
+  {
+   "month": "2026-10",
+   "pl": -226.48,
+   "trades": 2
+  }
+ ],
+ "curve": [
+  {
+   "i": 1,
+   "date": "2026-09-24",
+   "pl": 531.6,
+   "cum": 531.6
+  },
+  {
+   "i": 2,
+   "date": "2026-09-24",
+   "pl": -247.94,
+   "cum": 283.66
+  },
+  {
+   "i": 3,
+   "date": "2026-09-24",
+   "pl": -250.0,
+   "cum": 33.66
+  },
+  {
+   "i": 4,
+   "date": "2026-09-30",
+   "pl": 876.2,
+   "cum": 909.86
+  },
+  {
+   "i": 5,
+   "date": "2026-10-01",
+   "pl": -248.08,
+   "cum": 661.78
+  },
+  {
+   "i": 6,
+   "date": "2026-10-02",
+   "pl": 21.6,
+   "cum": 683.38
+  }
+ ],
+ "trades": [
+  {
+   "ticket": 217834214,
+   "symbol": "NAS100",
+   "dir": "SHORT",
+   "opened": "2026-10-02 16:50",
+   "closed": "2026-10-02 16:50",
+   "pl": 21.6,
+   "ledger_pl": 2606.5
+  },
+  {
+   "ticket": 216753839,
+   "symbol": "NAS100",
+   "dir": "SHORT",
+   "opened": "2026-10-01 06:35",
+   "closed": "2026-10-01 07:54",
+   "pl": -248.08,
+   "ledger_pl": -250.0
+  },
+  {
+   "ticket": 215354173,
+   "symbol": "NAS100",
+   "dir": "LONG",
+   "opened": "2026-09-29 05:20",
+   "closed": "2026-09-30 16:32",
+   "pl": 876.2,
+   "ledger_pl": 500.0
+  },
+  {
+   "ticket": 213061631,
+   "symbol": "GBPUSDp",
+   "dir": "LONG",
+   "opened": "2026-09-24 12:50",
+   "closed": "2026-09-24 14:04",
+   "pl": -250.0,
+   "ledger_pl": -250.0
+  },
+  {
+   "ticket": 212948958,
+   "symbol": "USDCHFp",
+   "dir": "SHORT",
+   "opened": "2026-09-24 11:05",
+   "closed": "2026-09-24 11:31",
+   "pl": -247.94,
+   "ledger_pl": -250.0
+  },
+  {
+   "ticket": 212764739,
+   "symbol": "USDJPYp",
+   "dir": "LONG",
+   "opened": "2026-09-24 05:20",
+   "closed": "2026-09-24 10:17",
+   "pl": 531.6,
+   "ledger_pl": 500.0
+  }
+ ],
+ "open_trades": [],
+ "excluded_unclassified": 42
+}
