@@ -4,107 +4,324 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>نبض السوق — أداء استراتيجية S9</title>
+<meta name="description" content="أداء استراتيجية S9 الحي — أرقام موثقة مباشرة من صفقات البروكر (BlackBull MT5)، تحديث تلقائي كل 30 دقيقة.">
+<meta property="og:title" content="نبض السوق — أداء استراتيجية S9">
+<meta property="og:description" content="أرقام موثقة من البروكر — منحنى الأداء، الإحصائيات، وسجل الصفقات — تحديث تلقائي كل 30 دقيقة.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%88%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0b0f17; --card:#131a26; --line:#1f2a3c; --txt:#e6edf5; --mut:#8b9bb0;
-    --green:#2ecc71; --red:#e74c3c; --gold:#f0b429; --blue:#4aa3ff;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--txt);font-family:'Segoe UI',Tahoma,sans-serif;padding:24px 16px;max-width:1080px;margin:0 auto}
-  header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:22px}
-  h1{font-size:1.45rem}
-  h1 span{color:var(--gold)}
-  .badge{background:#12291c;color:var(--green);border:1px solid #1d4a30;padding:5px 14px;border-radius:20px;font-size:.85rem}
-  .badge::before{content:"● ";animation:pulse 2s infinite}
-  @keyframes pulse{50%{opacity:.4}}
-  .upd{color:var(--mut);font-size:.8rem;width:100%}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
-  .card .lbl{color:var(--mut);font-size:.78rem;margin-bottom:6px}
-  .card .val{font-size:1.35rem;font-weight:700;direction:ltr;text-align:right}
-  .pos{color:var(--green)} .neg{color:var(--red)}
-  section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:22px}
-  h2{font-size:1.05rem;margin-bottom:14px;color:var(--blue)}
-  table{width:100%;border-collapse:collapse;font-size:.85rem}
-  th{color:var(--mut);font-weight:600;text-align:right;padding:8px 10px;border-bottom:1px solid var(--line)}
-  td{padding:8px 10px;border-bottom:1px solid #182231;direction:ltr;text-align:right}
-  tr:hover td{background:#182231}
-  .note{color:var(--mut);font-size:.78rem;line-height:1.8;border-top:1px solid var(--line);padding-top:14px;margin-top:8px}
-  .err{color:var(--red);padding:30px;text-align:center}
-  svg text{fill:var(--mut);font-size:10px}
+:root{
+  --bg:#070b12; --card:rgba(19,26,38,.72); --card2:rgba(25,34,50,.85); --line:rgba(255,255,255,.07);
+  --txt:#eaf1f9; --mut:#93a4ba; --green:#2ee6a8; --red:#ff5d73; --gold:#f5c04e; --blue:#5aa9ff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--txt);
+  font-family:'Cairo','Segoe UI',Tahoma,sans-serif;
+  min-height:100vh; padding:28px 16px 44px;
+  background-image:
+    radial-gradient(900px 420px at 85% -10%, rgba(245,192,78,.10), transparent 60%),
+    radial-gradient(900px 520px at 8% 110%, rgba(46,230,168,.08), transparent 60%);
+  background-attachment:fixed;
+}
+.wrap{max-width:1100px;margin:0 auto}
+header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:10px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+  background:linear-gradient(135deg,rgba(245,192,78,.18),rgba(46,230,168,.14));border:1px solid var(--line)}
+h1{font-size:1.5rem;font-weight:900}
+h1 span{color:var(--gold)}
+.sub{color:var(--mut);font-size:.82rem;margin-top:2px}
+.live{display:flex;align-items:center;gap:8px;background:rgba(46,230,168,.08);border:1px solid rgba(46,230,168,.25);
+  color:var(--green);padding:7px 16px;border-radius:24px;font-size:.85rem;font-weight:700}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(46,230,168,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(46,230,168,0)}100%{box-shadow:0 0 0 0 rgba(46,230,168,0)}}
+.updline{color:var(--mut);font-size:.8rem;margin-bottom:22px}
+.updline b{color:var(--txt);font-weight:600}
+/* hero */
+.hero{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;
+  background:linear-gradient(135deg,rgba(245,192,78,.07),rgba(19,26,38,.75) 45%,rgba(46,230,168,.06));
+  border:1px solid var(--line);border-radius:20px;padding:26px 28px;margin-bottom:20px;
+  box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.lbl{color:var(--mut);font-size:.82rem;margin-bottom:6px}
+.big{font-size:3rem;font-weight:900;letter-spacing:-1px;line-height:1.1;
+  text-shadow:0 0 34px rgba(46,230,168,.25)}
+.big.pos{color:var(--green)} .big.neg{color:var(--red)}
+.hero-sub{color:var(--mut);font-size:.85rem;margin-top:10px}
+.hero-sub b{color:var(--gold)}
+.hero-side{display:flex;flex-direction:column;align-items:center;gap:10px}
+.donut-wrap{position:relative;width:150px;height:150px}
+.donut{width:100%;height:100%;transform:rotate(-90deg)}
+.donut-bg{fill:none;stroke:rgba(255,255,255,.08);stroke-width:11}
+.donut-fg{fill:none;stroke:var(--green);stroke-width:11;stroke-linecap:round;
+  transition:stroke-dasharray 1.4s cubic-bezier(.22,.9,.35,1)}
+.donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.donut-val{font-size:1.5rem;font-weight:900;color:var(--green)}
+.donut-lbl{font-size:.72rem;color:var(--mut)}
+.pf-chip{background:rgba(245,192,78,.1);border:1px solid rgba(245,192,78,.3);color:var(--gold);
+  padding:5px 16px;border-radius:20px;font-size:.85rem;font-weight:700;direction:ltr}
+/* stats grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
+.card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.16);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.card .lbl{display:flex;align-items:center;gap:7px}
+.card .val{font-size:1.3rem;font-weight:800;margin-top:8px;direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
+.pos{color:var(--green)} .neg{color:var(--red)} .gold{color:var(--gold)}
+/* sections */
+section{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:20px}
+h2{font-size:1.02rem;margin-bottom:16px;color:var(--blue);display:flex;align-items:center;gap:9px}
+h2::before{content:"";width:4px;height:18px;border-radius:3px;background:linear-gradient(var(--gold),var(--green))}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+th{color:var(--mut);font-weight:600;text-align:right;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.04);direction:ltr;text-align:right;font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,.03)}
+.chip{display:inline-block;padding:2px 11px;border-radius:14px;font-size:.76rem;font-weight:700}
+.chip.long{background:rgba(46,230,168,.12);color:var(--green);border:1px solid rgba(46,230,168,.25)}
+.chip.short{background:rgba(255,93,115,.12);color:var(--red);border:1px solid rgba(255,93,115,.25)}
+.sym{color:var(--blue);font-weight:700;letter-spacing:.4px}
+.tick{color:var(--mut);font-size:.8rem}
+/* bars */
+.bar-wrap{display:flex;align-items:center;gap:10px}
+.bar{height:9px;border-radius:6px;min-width:4px;transition:width 1.2s cubic-bezier(.22,.9,.35,1)}
+.bar.g{background:linear-gradient(90deg,#1d8f66,var(--green))}
+.bar.r{background:linear-gradient(90deg,#8f2b3a,var(--red))}
+.bar-cell{width:34%}
+/* curve */
+svg text{fill:var(--mut);font-size:11px;font-family:'Cairo',Tahoma,sans-serif}
+.curve-line{fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.8s cubic-bezier(.4,0,.2,1) .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.last-dot{animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.35}}
+/* misc */
+.note{color:var(--mut);font-size:.78rem;line-height:1.9;border-top:1px solid var(--line);padding-top:16px;margin-top:6px}
+.err{color:var(--red);padding:34px;text-align:center;font-weight:700}
+.open-strip{background:rgba(245,192,78,.08);border:1px solid rgba(245,192,78,.3);color:var(--gold);
+  border-radius:14px;padding:12px 18px;margin-bottom:20px;font-size:.88rem;font-weight:600}
+.fade{opacity:0;transform:translateY(14px);animation:fadein .7s ease forwards}
+@keyframes fadein{to{opacity:1;transform:none}}
+.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}.d5{animation-delay:.45s}
+@media(max-width:640px){
+  .hero{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .big{font-size:2.3rem}
+  .bar-cell{width:26%}
+}
 </style>
 </head>
 <body>
-<header>
-  <h1>📈 نبض السوق — أداء <span>S9</span></h1>
-  <div class="badge">بيانات حية</div>
-  <div class="upd" id="upd"></div>
+<div class="wrap">
+<header class="fade d1">
+  <div class="brand">
+    <div class="logo">📈</div>
+    <div>
+      <h1>نبض السوق <span>— أداء S9</span></h1>
+      <div class="sub" id="strategy"></div>
+    </div>
+  </div>
+  <div class="live"><span class="dot"></span> بيانات حية من البروكر</div>
 </header>
-<div class="grid" id="stats"></div>
-<section>
-  <h2>منحنى الأداء التراكمي (ربح/خسارة كل صفقة موثقة من البروكر)</h2>
+<div class="updline fade d1" id="upd"></div>
+
+<section class="hero fade d2">
+  <div class="hero-main">
+    <div class="lbl">صافي الربح/الخسارة الموثق — صفقات البروكر مباشرة</div>
+    <div class="big" id="netpl" dir="ltr">0.00 $</div>
+    <div class="hero-sub" id="heroSub"></div>
+  </div>
+  <div class="hero-side">
+    <div class="donut-wrap">
+      <svg viewBox="0 0 120 120" class="donut">
+        <circle cx="60" cy="60" r="52" class="donut-bg"/>
+        <circle cx="60" cy="60" r="52" class="donut-fg" id="donutFg"/>
+      </svg>
+      <div class="donut-center"><div class="donut-val" id="winrate">0%</div><div class="donut-lbl">نسبة الفوز</div></div>
+    </div>
+    <div class="pf-chip" id="pfChip">PF —</div>
+  </div>
+</section>
+
+<div class="grid fade d3" id="stats"></div>
+<div id="openStrip"></div>
+
+<section class="fade d3">
+  <h2>منحنى الأداء التراكمي</h2>
   <div id="chart"></div>
 </section>
-<section>
+
+<section class="fade d4">
   <h2>الأداء الشهري</h2>
   <table id="monthly"></table>
 </section>
-<section>
+
+<section class="fade d4">
+  <h2>الأداء حسب الرمز</h2>
+  <table id="symbols"></table>
+</section>
+
+<section class="fade d5">
   <h2>سجل الصفقات (الأحدث أولاً)</h2>
   <table id="trades"></table>
 </section>
-<div class="note">
-  🔒 جميع الأرقام مستخرجة مباشرة من صفقات البروكر الموثقة (حساب 927302 — BlackBull MT5) وتُحدَّث تلقائياً كل 30 دقيقة.
-  تُعرض صفقات استراتيجية S9 فقط. الربح/الخسارة يشمل السواب والعمولات. الأداء السابق لا يضمن النتائج المستقبلية — التداول ينطوي على مخاطر.
+
+<div class="note fade d5">
+  🔒 جميع الأرقام مستخرجة مباشرة من صفقات البروكر الموثقة (حساب <span id="acc"></span> — BlackBull MT5) وتُحدَّث تلقائياً كل 30 دقيقة.
+  تُعرض صفقات استراتيجية S9 فقط. الربح/الخسارة يشمل السواب والعمولات. الأداء السابق لا يضمن النتائج المستقبلية — التداول ينطوي على مخاطر عالية.
 </div>
+</div>
+
 <script>
-const fmt = v => (v>=0?'+':'') + v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const MONTHS = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const monthAr = m => { const [y, mm] = m.split('-'); return (MONTHS[+mm-1]||mm) + ' ' + y; };
+const dayAr = d => { const p = d.split('-'); return p[2] + ' ' + (MONTHS[+p[1]-1]||p[1]); };
+const fmt = (v, sign=false, dec=2) => (sign && v>=0 ? '+' : '') + v.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});
 const cls = v => v>=0 ? 'pos' : 'neg';
+
+function countUp(el, target, {dec=2, suffix='', sign=false, dur=1300}={}){
+  const t0 = performance.now();
+  const step = t => {
+    const p = Math.min(1, (t-t0)/dur), e = 1 - Math.pow(1-p, 3);
+    el.textContent = fmt(target*e, sign, dec) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+function relTime(iso){
+  const m = Math.max(0, Math.round((Date.now() - new Date(iso).getTime())/60000));
+  if (m < 1) return 'الآن';
+  if (m < 60) return 'قبل ' + m + ' دقيقة';
+  const h = Math.floor(m/60);
+  if (h < 24) return 'قبل ' + h + ' ساعة' + (m%60 ? ' و' + (m%60) + ' دقيقة' : '');
+  return 'قبل ' + Math.floor(h/24) + ' يوم';
+}
+
 async function load(){
   try{
-    const d = await (await fetch('data.json?t='+Date.now())).json();
+    const d = await (await fetch('data.json?t=' + Date.now())).json();
     const s = d.stats;
-    document.getElementById('upd').textContent = 'آخر تحديث: ' + d.generated_at + ' (UTC) — حساب ' + d.account;
+    document.getElementById('strategy').textContent = d.strategy || '';
+    document.getElementById('acc').textContent = d.account || '';
+    const updEl = document.getElementById('upd');
+    const renderUpd = () => {
+      updEl.innerHTML = 'آخر تحديث: <b>' + relTime(d.generated_at) + '</b> — ' + d.generated_at.replace('T',' ').replace('Z','') + ' UTC — المصدر: ' + (d.source||'');
+    };
+    renderUpd();
+    setInterval(renderUpd, 60000);
+
+    // hero
+    const net = document.getElementById('netpl');
+    net.classList.add(cls(s.net_pl));
+    countUp(net, s.net_pl, {suffix:' $', sign:true});
+    document.getElementById('heroSub').innerHTML =
+      'على ' + s.trades + ' صفقة مغلقة موثقة — أفضل صفقة <b>' + fmt(s.best, true) + '$</b> · أسوأ صفقة <b>' + fmt(s.worst) + '$</b>';
+    // donut
+    const C = 2 * Math.PI * 52;
+    const fg = document.getElementById('donutFg');
+    fg.style.strokeDasharray = '0 ' + C;
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      fg.style.strokeDasharray = (C * (s.win_rate/100)).toFixed(1) + ' ' + C.toFixed(1);
+    }));
+    countUp(document.getElementById('winrate'), s.win_rate, {dec:1, suffix:'%'});
+    const pf = s.profit_factor;
+    document.getElementById('pfChip').textContent = 'PF ' + (pf ?? '—');
+    if (pf) document.getElementById('pfChip').classList.add(pf >= 1.5 ? 'pos' : 'neg');
+
+    // stat cards
+    const rr = s.avg_win && s.avg_loss ? (s.avg_win / Math.abs(s.avg_loss)).toFixed(2) : '—';
     const cards = [
-      ['صافي الربح/الخسارة', fmt(s.net_pl)+' $', cls(s.net_pl)],
-      ['عدد الصفقات المغلقة', s.trades, ''],
-      ['نسبة الفوز', s.win_rate+'%', s.win_rate>=50?'pos':'neg'],
-      ['عامل الربح (PF)', s.profit_factor??'—', (s.profit_factor??0)>=1.5?'pos':''],
-      ['متوسط الربح', fmt(s.avg_win)+' $', 'pos'],
-      ['متوسط الخسارة', fmt(s.avg_loss)+' $', 'neg'],
-      ['أفضل صفقة', fmt(s.best)+' $', 'pos'],
-      ['أسوأ صفقة', fmt(s.worst)+' $', 'neg'],
-      ['أقصى تراجع', '-'+s.max_dd+' $', 'neg'],
-      ['صفقات مفتوحة', s.open_count ? s.open_count+' ('+fmt(s.open_pl)+' $)' : 'لا يوجد', s.open_pl>=0?'pos':'neg'],
+      ['🎯', 'عدد الصفقات المغلقة', s.trades, ''],
+      ['⚖️', 'متوسط الربح ÷ متوسط الخسارة', rr, 'gold'],
+      ['🟢', 'متوسط الربح', fmt(s.avg_win, true) + ' $', 'pos'],
+      ['🔴', 'متوسط الخسارة', fmt(s.avg_loss) + ' $', 'neg'],
+      ['🏆', 'أفضل صفقة', fmt(s.best, true) + ' $', 'pos'],
+      ['⚠️', 'أسوأ صفقة', fmt(s.worst) + ' $', 'neg'],
+      ['📉', 'أقصى تراجع', '-' + s.max_dd + ' $', 'neg'],
+      ['🔓', 'صفقات مفتوحة', s.open_count ? s.open_count + ' (' + fmt(s.open_pl, true) + ' $)' : 'لا يوجد', s.open_pl>=0?'pos':'neg'],
     ];
-    document.getElementById('stats').innerHTML = cards.map(c=>
-      `<div class="card"><div class="lbl">${c[0]}</div><div class="val ${c[2]}">${c[1]}</div></div>`).join('');
-    // equity curve (inline SVG)
-    const c = d.curve, W=1000, H=260, P=42;
-    if(c.length>1){
-      const vals = c.map(p=>p.cum), mn=Math.min(0,...vals), mx=Math.max(...vals);
+    document.getElementById('stats').innerHTML = cards.map(c =>
+      '<div class="card"><div class="lbl">' + c[0] + ' ' + c[1] + '</div><div class="val ' + c[3] + '">' + c[2] + '</div></div>').join('');
+
+    // open trades strip
+    if (s.open_count > 0) {
+      document.getElementById('openStrip').innerHTML =
+        '<div class="open-strip">⏳ يوجد ' + s.open_count + ' صفقة مفتوحة حالياً — الربح/الخسارة العائم: ' + fmt(s.open_pl, true) + ' $</div>';
+    }
+
+    // equity curve
+    const c = d.curve, W = 1000, H = 270, P = 46;
+    if (c.length > 1) {
+      const vals = c.map(p => p.cum), mn = Math.min(0, ...vals), mx = Math.max(...vals);
       const X = i => P + (W-2*P) * (i/(c.length-1));
       const Y = v => H-P - (H-2*P) * ((v-mn)/((mx-mn)||1));
-      const path = c.map((p,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(p.cum).toFixed(1)).join(' ');
-      const area = path + ` L ${X(c.length-1).toFixed(1)} ${Y(Math.max(0,mn)).toFixed(1)} L ${X(0).toFixed(1)} ${Y(Math.max(0,mn)).toFixed(1)} Z`;
-      const zero = Y(0);
+      const path = c.map((p,i) => (i?'L':'M') + X(i).toFixed(1) + ' ' + Y(p.cum).toFixed(1)).join(' ');
+      const base = Y(Math.max(0, mn));
+      const area = path + ' L ' + X(c.length-1).toFixed(1) + ' ' + base.toFixed(1) + ' L ' + X(0).toFixed(1) + ' ' + base.toFixed(1) + ' Z';
+      const up = vals[vals.length-1] >= 0;
+      const col = up ? '#2ee6a8' : '#ff5d73';
+      const lx = X(c.length-1).toFixed(1), ly = Y(vals[vals.length-1]).toFixed(1);
       document.getElementById('chart').innerHTML =
-        `<svg viewBox="0 0 ${W} ${H}" style="width:100%;direction:ltr">
-          <line x1="${P}" y1="${zero}" x2="${W-P}" y2="${zero}" stroke="#2a3a52" stroke-dasharray="4 4"/>
-          <path d="${area}" fill="rgba(46,204,113,.08)"/>
-          <path d="${path}" fill="none" stroke="${vals[vals.length-1]>=0?'#2ecc71':'#e74c3c'}" stroke-width="2.5"/>
-          <text x="${P}" y="${H-12}">${c[0].date}</text>
-          <text x="${W-P}" y="${H-12}" text-anchor="end">${c[c.length-1].date}</text>
-          <text x="${P}" y="${Y(mx)-6}">${mx.toFixed(0)}</text>
-          <text x="${P}" y="${Y(mn)+14}">${mn.toFixed(0)}</text>
-        </svg>`;
-    } else { document.getElementById('chart').innerHTML = '<div class="err">لا توجد بيانات كافية للمنحنى بعد</div>'; }
+        '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;direction:ltr">' +
+        '<defs>' +
+        '<linearGradient id="ag" x1="0" y1="0" x2="0" y2="1">' +
+        '<stop offset="0%" stop-color="' + col + '" stop-opacity=".28"/><stop offset="100%" stop-color="' + col + '" stop-opacity="0"/>' +
+        '</linearGradient></defs>' +
+        '<line x1="' + P + '" y1="' + Y(0).toFixed(1) + '" x2="' + (W-P) + '" y2="' + Y(0).toFixed(1) + '" stroke="#2a3a52" stroke-dasharray="5 5"/>' +
+        '<path d="' + area + '" fill="url(#ag)" opacity="0"><animate attributeName="opacity" from="0" to="1" begin="0.9s" dur="0.9s" fill="freeze"/></path>' +
+        '<path class="curve-line" pathLength="1" d="' + path + '" stroke="' + col + '"/>' +
+        '<circle class="last-dot" cx="' + lx + '" cy="' + ly + '" r="5" fill="' + col + '"/>' +
+        '<circle cx="' + lx + '" cy="' + ly + '" r="2.5" fill="#070b12"/>' +
+        '<text x="' + P + '" y="' + (H-14) + '">' + dayAr(c[0].date) + '</text>' +
+        '<text x="' + (W-P) + '" y="' + (H-14) + '" text-anchor="end">' + dayAr(c[c.length-1].date) + '</text>' +
+        '<text x="' + P + '" y="' + (Y(mx)-8).toFixed(1) + '">' + mx.toFixed(0) + '</text>' +
+        '<text x="' + P + '" y="' + (Y(mn)+16).toFixed(1) + '">' + mn.toFixed(0) + '</text>' +
+        '</svg>';
+    } else {
+      document.getElementById('chart').innerHTML = '<div class="err">لا توجد بيانات كافية للمنحنى بعد</div>';
+    }
+
+    // monthly (Arabic month names + bars)
+    const maxAbsM = Math.max(...d.monthly.map(m => Math.abs(m.pl)), 1);
     document.getElementById('monthly').innerHTML =
-      '<tr><th>الشهر</th><th>صافي الربح/الخسارة</th><th>عدد الصفقات</th></tr>' +
-      d.monthly.map(m=>`<tr><td>${m.month}</td><td class="${cls(m.pl)}">${fmt(m.pl)} $</td><td>${m.trades}</td></tr>`).join('');
+      '<tr><th>الشهر</th><th class="bar-cell">التوزيع</th><th>صافي الربح/الخسارة</th><th>عدد الصفقات</th></tr>' +
+      d.monthly.map(m => {
+        const w = Math.max(2, Math.round(100 * Math.abs(m.pl) / maxAbsM));
+        return '<tr><td style="direction:rtl;text-align:right;font-weight:700">' + monthAr(m.month) + '</td>' +
+          '<td class="bar-cell"><div class="bar-wrap"><div class="bar ' + (m.pl>=0?'g':'r') + '" style="width:0%" data-w="' + w + '"></div></div></td>' +
+          '<td class="' + cls(m.pl) + '" style="font-weight:700">' + fmt(m.pl, true) + ' $</td><td>' + m.trades + '</td></tr>';
+      }).join('');
+
+    // per-symbol breakdown (computed client-side)
+    const bySym = {};
+    d.trades.forEach(t => {
+      const o = bySym[t.symbol] || (bySym[t.symbol] = {n:0, pl:0, w:0});
+      o.n++; o.pl += t.pl; if (t.pl >= 0) o.w++;
+    });
+    const rows = Object.entries(bySym).sort((a,b) => Math.abs(b[1].pl) - Math.abs(a[1].pl));
+    const maxAbsS = Math.max(...rows.map(r => Math.abs(r[1].pl)), 1);
+    document.getElementById('symbols').innerHTML =
+      '<tr><th>الرمز</th><th class="bar-cell">صافي الأداء</th><th>صافي الربح/الخسارة</th><th>الصفقات</th><th>الفوز</th></tr>' +
+      rows.map(([sym, o]) => {
+        const w = Math.max(2, Math.round(100 * Math.abs(o.pl) / maxAbsS));
+        return '<tr><td><span class="sym">' + sym.replace('p','') + '</span></td>' +
+          '<td class="bar-cell"><div class="bar-wrap"><div class="bar ' + (o.pl>=0?'g':'r') + '" style="width:0%" data-w="' + w + '"></div></div></td>' +
+          '<td class="' + cls(o.pl) + '" style="font-weight:700">' + fmt(o.pl, true) + ' $</td><td>' + o.n + '</td><td>' + Math.round(100*o.w/o.n) + '%</td></tr>';
+      }).join('');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      document.querySelectorAll('.bar').forEach(b => b.style.width = b.dataset.w + '%');
+    }));
+
+    // trades log
     document.getElementById('trades').innerHTML =
       '<tr><th>التذكرة</th><th>الرمز</th><th>الاتجاه</th><th>الفتح</th><th>الإغلاق</th><th>الربح/الخسارة</th></tr>' +
-      d.trades.map(t=>`<tr><td>${t.ticket}</td><td>${t.symbol}</td><td>${t.dir==='LONG'?'🟢 شراء':'🔴 بيع'}</td><td>${t.opened}</td><td>${t.closed??'—'}</td><td class="${cls(t.pl)}">${fmt(t.pl)} $</td></tr>`).join('');
+      d.trades.map(t =>
+        '<tr><td class="tick">' + t.ticket + '</td><td><span class="sym">' + t.symbol.replace('p','') + '</span></td>' +
+        '<td><span class="chip ' + (t.dir==='LONG'?'long':'short') + '">' + (t.dir==='LONG'?'▲ شراء':'▼ بيع') + '</span></td>' +
+        '<td class="tick">' + t.opened + '</td><td class="tick">' + (t.closed ?? '—') + '</td>' +
+        '<td class="' + cls(t.pl) + '" style="font-weight:700">' + fmt(t.pl, true) + ' $</td></tr>').join('');
   }catch(e){
     document.getElementById('stats').innerHTML = '<div class="err">تعذر تحميل البيانات — أعد المحاولة لاحقاً</div>';
   }
