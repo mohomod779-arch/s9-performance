@@ -1,16 +1,16 @@
 {
- "generated_at": "2026-10-12T14:08:01Z",
+ "generated_at": "2026-10-12T14:38:03Z",
  "account": "927302",
  "strategy": "S9 - SNR Fresh Zones M15",
  "source": "broker-verified positions (magic 777001), BlackBull MT5",
  "stats": {
-  "net_pl": 1490.19,
-  "trades": 17,
-  "wins": 7,
+  "net_pl": 1938.75,
+  "trades": 18,
+  "wins": 8,
   "losses": 10,
-  "win_rate": 41.2,
-  "profit_factor": 1.7,
-  "avg_win": 518.07,
+  "win_rate": 44.4,
+  "profit_factor": 1.91,
+  "avg_win": 509.38,
   "avg_loss": -213.63,
   "best": 876.2,
   "worst": -257.04,
@@ -26,8 +26,8 @@
   },
   {
    "month": "2026-10",
-   "pl": -32.82,
-   "trades": 7
+   "pl": 415.74,
+   "trades": 8
   }
  ],
  "curve": [
@@ -132,9 +132,24 @@
    "date": "2026-10-08",
    "pl": -126.0,
    "cum": 1490.19
+  },
+  {
+   "i": 18,
+   "date": "2026-10-12",
+   "pl": 448.56,
+   "cum": 1938.75
   }
  ],
  "trades": [
+  {
+   "ticket": 220871411,
+   "symbol": "NAS100",
+   "dir": "SHORT",
+   "opened": "2026-10-09 10:50",
+   "closed": "2026-10-12 18:26",
+   "pl": 448.56,
+   "ledger_pl": 500.0
+  },
   {
    "ticket": 220555715,
    "symbol": "NAS100",
@@ -290,5 +305,5 @@
   }
  ],
  "open_trades": [],
- "excluded_unclassified": 47
+ "excluded_unclassified": 46
 }
