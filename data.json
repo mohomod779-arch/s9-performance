@@ -1,17 +1,17 @@
 {
- "generated_at": "2026-10-14T18:38:01Z",
+ "generated_at": "2026-10-14T19:08:00Z",
  "account": "927302",
  "strategy": "S9 - SNR Fresh Zones M15",
  "source": "broker-verified positions (magic 777001), BlackBull MT5",
  "stats": {
-  "net_pl": 3844.12,
-  "trades": 21,
+  "net_pl": 3602.72,
+  "trades": 22,
   "wins": 10,
-  "losses": 11,
-  "win_rate": 47.6,
-  "profit_factor": 2.61,
+  "losses": 12,
+  "win_rate": 45.5,
+  "profit_factor": 2.37,
   "avg_win": 623.12,
-  "avg_loss": -217.01,
+  "avg_loss": -219.04,
   "best": 1631.84,
   "worst": -257.04,
   "max_dd": 872.82,
@@ -26,8 +26,8 @@
   },
   {
    "month": "2026-10",
-   "pl": 2321.11,
-   "trades": 11
+   "pl": 2079.71,
+   "trades": 12
   }
  ],
  "curve": [
@@ -156,9 +156,24 @@
    "date": "2026-10-14",
    "pl": -250.77,
    "cum": 3844.12
+  },
+  {
+   "i": 22,
+   "date": "2026-10-14",
+   "pl": -241.4,
+   "cum": 3602.72
   }
  ],
  "trades": [
+  {
+   "ticket": 223399358,
+   "symbol": "USDJPYp",
+   "dir": "LONG",
+   "opened": "2026-10-14 22:20",
+   "closed": "2026-10-14 22:30",
+   "pl": -241.4,
+   "ledger_pl": -250.0
+  },
   {
    "ticket": 222860022,
    "symbol": "XAUUSDp",
@@ -350,5 +365,5 @@
   }
  ],
  "open_trades": [],
- "excluded_unclassified": 52
+ "excluded_unclassified": 51
 }
