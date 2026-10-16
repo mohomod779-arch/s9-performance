@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-10-16T16:38:03Z",
+ "generated_at": "2026-10-16T17:08:03Z",
  "account": "927302",
  "strategy": "S9 - SNR Fresh Zones M15",
  "source": "broker-verified positions (magic 777001), BlackBull MT5",
  "stats": {
-  "net_pl": 3349.88,
-  "trades": 23,
+  "net_pl": 3097.88,
+  "trades": 24,
   "wins": 10,
-  "losses": 13,
-  "win_rate": 43.5,
-  "profit_factor": 2.16,
+  "losses": 14,
+  "win_rate": 41.7,
+  "profit_factor": 1.99,
   "avg_win": 623.12,
-  "avg_loss": -221.64,
+  "avg_loss": -223.81,
   "best": 1631.84,
   "worst": -257.04,
-  "max_dd": 872.82,
+  "max_dd": 997.01,
   "open_pl": 0,
   "open_count": 0
  },
@@ -26,8 +26,8 @@
   },
   {
    "month": "2026-10",
-   "pl": 1826.87,
-   "trades": 13
+   "pl": 1574.87,
+   "trades": 14
   }
  ],
  "curve": [
@@ -168,9 +168,24 @@
    "date": "2026-10-15",
    "pl": -252.84,
    "cum": 3349.88
+  },
+  {
+   "i": 24,
+   "date": "2026-10-16",
+   "pl": -252.0,
+   "cum": 3097.88
   }
  ],
  "trades": [
+  {
+   "ticket": 224736256,
+   "symbol": "XAUUSDp",
+   "dir": "LONG",
+   "opened": "2026-10-16 20:20",
+   "closed": "2026-10-16 20:30",
+   "pl": -252.0,
+   "ledger_pl": -250.0
+  },
   {
    "ticket": 223555862,
    "symbol": "XAUUSDp",
@@ -380,5 +395,5 @@
   }
  ],
  "open_trades": [],
- "excluded_unclassified": 55
+ "excluded_unclassified": 54
 }
