@@ -1,17 +1,17 @@
 {
- "generated_at": "2026-11-02T04:38:00Z",
+ "generated_at": "2026-11-02T05:08:00Z",
  "account": "927302",
  "strategy": "S9 - SNR Fresh Zones M15",
  "source": "broker-verified positions (magic 777001), BlackBull MT5",
  "stats": {
-  "net_pl": 2915.75,
-  "trades": 28,
+  "net_pl": 2674.56,
+  "trades": 29,
   "wins": 12,
-  "losses": 16,
-  "win_rate": 42.9,
-  "profit_factor": 1.81,
+  "losses": 17,
+  "win_rate": 41.4,
+  "profit_factor": 1.69,
   "avg_win": 543.74,
-  "avg_loss": -225.57,
+  "avg_loss": -226.49,
   "best": 1631.84,
   "worst": -257.04,
   "max_dd": 1472.79,
@@ -28,6 +28,11 @@
    "month": "2026-10",
    "pl": 1392.74,
    "trades": 18
+  },
+  {
+   "month": "2026-11",
+   "pl": -241.19,
+   "trades": 1
   }
  ],
  "curve": [
@@ -198,9 +203,24 @@
    "date": "2026-10-30",
    "pl": 259.48,
    "cum": 2915.75
+  },
+  {
+   "i": 29,
+   "date": "2026-11-02",
+   "pl": -241.19,
+   "cum": 2674.56
   }
  ],
  "trades": [
+  {
+   "ticket": 231620892,
+   "symbol": "USDJPYp",
+   "dir": "SHORT",
+   "opened": "2026-10-30 09:20",
+   "closed": "2026-11-02 06:36",
+   "pl": -241.19,
+   "ledger_pl": -250.0
+  },
   {
    "ticket": 231968283,
    "symbol": "NAS100",
@@ -455,5 +475,5 @@
   }
  ],
  "open_trades": [],
- "excluded_unclassified": 73
+ "excluded_unclassified": 72
 }
