@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-05T15:08:13Z",
+ "generated_at": "2026-11-05T15:38:09Z",
  "account": "927302",
  "strategy": "S9 - SNR Fresh Zones M15",
  "source": "broker-verified positions (magic 777001), BlackBull MT5",
@@ -505,5 +505,5 @@
   }
  ],
  "open_trades": [],
- "excluded_unclassified": 79
+ "excluded_unclassified": 80
 }
