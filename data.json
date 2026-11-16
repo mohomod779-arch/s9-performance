@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16T18:38:00Z",
+ "generated_at": "2026-11-16T19:08:01Z",
  "account": "927302",
  "strategy": "S9 - SNR Fresh Zones M15",
  "source": "broker-verified positions (magic 777001), BlackBull MT5",
@@ -15,8 +15,8 @@
   "best": 1631.84,
   "worst": -432.12,
   "max_dd": 2135.48,
-  "open_pl": 0,
-  "open_count": 0
+  "open_pl": -34.65,
+  "open_count": 1
  },
  "monthly": [
   {
@@ -609,6 +609,14 @@
    "ledger_pl": null
   }
  ],
- "open_trades": [],
+ "open_trades": [
+  {
+   "ticket": 237334678,
+   "symbol": "NAS100",
+   "dir": "LONG",
+   "opened": "2026-11-16 18:50",
+   "pl": -34.65
+  }
+ ],
  "excluded_unclassified": 90
 }
