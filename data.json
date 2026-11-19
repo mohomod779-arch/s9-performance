@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-19T09:38:01Z",
+ "generated_at": "2026-11-19T10:08:01Z",
  "account": "927302",
  "strategy": "S9 - SNR Fresh Zones M15",
  "source": "broker-verified positions (magic 777001), BlackBull MT5",
@@ -15,7 +15,7 @@
   "best": 1631.84,
   "worst": -577.5,
   "max_dd": 2856.97,
-  "open_pl": -78.7,
+  "open_pl": -42.8,
   "open_count": 1
  },
  "monthly": [
@@ -645,7 +645,7 @@
    "symbol": "XAUUSDp",
    "dir": "SHORT",
    "opened": "2026-11-19 04:20",
-   "pl": -78.7
+   "pl": -42.8
   }
  ],
  "excluded_unclassified": 98
